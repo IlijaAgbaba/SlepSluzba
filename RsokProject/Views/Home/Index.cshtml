@@ -142,14 +142,15 @@
                 <div class="comments">
                     <h4>KOMENTARI</h4>
                     <div id="comments-container">
+                        <!--Za svaki komentar se dsfsdfdsfsfdspravi komentar polje u kojem se nalazi ime, datum i tekst komentara-->
                         <!--Za svaki komentar se pravi komentar polje u kojem se nalazi ime, datum i tekst komentara-->
                         @foreach (Komentar k in @Model)
                         {
                             <div class="comment">
                                 <div class="comment-user">
-                                     <span class="user-details"><span class="username">@k.ime</span><span>: </span><span>@k.datum</span></span>
+                                    <span class="user-details"><span class="username">@k.ime</span><span>: </span><span>@k.datum</span></span>
                                 </div>
-                                <div class="comment-text">@k.tekstKomentara</div> 
+                                <div class="comment-text">@k.tekstKomentara</div>
                             </div>
                         }
 
