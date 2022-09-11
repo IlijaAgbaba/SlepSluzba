@@ -1,0 +1,224 @@
+﻿@model IEnumerable<RsokProject.Models.Komentar>
+
+@using RsokProject.Models;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Seminarski rad - RSOK</title>
+    <!-- referenca za css -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/style.css")">
+
+
+    <!-- referenca za font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- referenca za jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <!-- referenca za font ikonica -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+    <header>
+        <nav class="menu">
+            <ul class="menu">
+                <li>
+                    <a href="#pocetna">Početna stranica</a>
+                </li>
+                <li>
+                    <a href="#onama">O nama</a>
+                </li>
+                <li>
+                    <a href="#loyalty">Loyalty program</a>
+                </li>
+                <li>
+                    <a href="#usluge">Usluge</a>
+                </li>
+                <li>
+                    <a href="#kontakt">Kontakt</a>
+                </li>
+                <!--Ukoliko je korisnik autentifikovan dobija opciju da je izloguje, a ukoliko nije dobija opciju da se uloguje-->
+                <li>
+                    @if (Request.IsAuthenticated)
+                    {
+
+                        @Html.ActionLink("Log Out", "Logout", "Account")
+                    }
+                    else
+                    {
+
+                        @Html.ActionLink("Login", "Login", "Account")
+                    }
+                </li>
+                <!--Ukoliko korisnik nije autentifikovan dobija opciju da se registruje-->
+                <li>
+                    @if (!Request.IsAuthenticated)
+                    {
+                        @Html.ActionLink("Register", "Register", "Account")
+                    }
+                </li>
+                <!--Ukoliko je korisnik autentifikovan ispisuje mu se poruka dobrodošlice-->
+                <li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <p class="welcome-sign">Dobrodošao, @Html.Encode(User.Identity.Name)</p>
+                    }
+                </li>
+            </ul>
+            <a href="#" id="toggle-btn">Meni</a>
+        </nav>
+    </header>
+
+    <!-- Početna stranica -->
+
+    <a name="pocetna"></a>
+    <div class="sekcija-pocetna">
+        <div class="pano">
+            <h1>KONDOR</h1>
+            <h2>Započnite svoje putovanje automobilom bezbrižno.</h2>
+            <div>
+                <img src="~/Content/Img/karikatura.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- onama sekcija -->
+
+    <a name="onama"></a>
+    <div id="onama" class="sekcija">
+        <div class="pano">
+            <div class="onama-sadrzaj">
+
+                <div>
+                    <h2>O nama</h2>
+                    <p>Kondor pruža 24h pomoć na putu na teritoriji Srbije i Evrope, sa preko 200 strateški raspoređenih šlep-vozila širom Srbije i partnerskim programom sa asistentskom kućom AWP Austria (članica grupe Allianz) za teritoriju Evrope.</p>
+                    <p>Skoro decenijsko iskustvo i znanje koje nosimo iz oblasti pružanja pomoći na putu, prenosimo i na promovisanje i edukaciju bezbednosti dece u saobraćaju. Vodimo računa o udobnosti Vašeg putovanja i kada niste u svom automobilu, pružajući usluge rent-a-car i usluge transfera do i od svih aerodroma u regionu. Celu priču Vašeg putovanja upotpunjujemo ponudom naše turističke agencije B Trip.</p>
+                    <button type="button">Prikaži više</button>
+                </div>
+
+                <div>
+                    <img src="~/Content/Img/onama.jpg" alt="">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- loyalty sekcija -->
+
+    <a name="loyalty"></a>
+    <div id="loyalty" class="sekcija">
+        <div class="pano">
+            <!-- <h2>Loyalty program</h2>
+            <p>Kondor Servis od prošle godine je počeo sa razvojem programa lojalnosti za svoje korisnike. Pored bezbrižnosti na putu, Kondor Servis želi omogućiti svojim korisnicima dodatni benefit, odnosno korišćenje usluga pod što povoljnijim uslovima u kompanijama čija je delatnost vezana uz putovanje, odmor, održavanje ili popravak vozila, kupovinu rezervnih delova i drugih roba i usluga kod partnera uključenih u ovaj program.</p>
+            <h3>Naši partneri kroz program lojalnosti:</h3>
+            <h4>1. Bosch Car Service</h4>
+            <h4>2. Wurth</h4>
+            <h4>3. Auto Stakla Ivanić</h4>
+            <h4>4. Triglav Osiguranje</h4>
+            <h4>5. B-trip putnička agencija</h4>
+            <h4>6. Euroauto</h4>
+            <h4>7. Zeder</h4> -->
+            @if (Request.IsAuthenticated)
+            {
+                <form method="post">
+                    <!--<input  name="ime" type="text" class="feedback-input" placeholder="Ime" oninvalid="this.setCustomValidity('Unesite ime')"  oninput="this.setCustomValidity('')" />-->
+                    <!-- <input name="email" type="text" class="feedback-input" placeholder="Email" /> -->
+                    <textarea name="tekstKomentara" class="feedback-input" placeholder="Komentar" required oninvalid="this.setCustomValidity('Unesite tekst komentara')" oninput="this.setCustomValidity('')"></textarea>
+                    <input type="submit" value="Komentarisi" />
+                </form>
+            }
+            <div class="comments-section">
+                <div class="comments">
+                    <h4>KOMENTARI</h4>
+                    <div id="comments-container">
+                        <!--Za svaki komentar se dsfsdfdsfsfdspravi komentar polje u kojem se nalazi ime, datum i tekst komentara-->
+                        <!--Za svaki komentar se pravi komentar polje u kojem se nalazi ime, datum i tekst komentara-->
+                        @foreach (Komentar k in @Model)
+                        {
+                            <div class="comment">
+                                <div class="comment-user">
+                                    <span class="user-details"><span class="username">@k.ime</span><span>: </span><span>@k.datum</span></span>
+                                </div>
+                                <div class="comment-text">@k.tekstKomentara</div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- usluge -->
+    <a name="usluge"></a>
+    <div id="usluge" class="sekcija">
+        <div class="pano">
+            <div class="usluge-sadrzaj">
+                <div>
+                    <img src="~/Content/Img/usluge.jpg" alt="">
+                </div>
+                <div>
+                    <h2>Usluge</h2>
+                    <p>U našoj ponudi se nalaze tri paketa pomoći na putu</p>
+                    <h4>&#10148; Nacionalni paket</h4>
+                    <p>
+                        Dve asistencije na teritoriji Republike Srbije u trajanju od godinu dana.
+                        3999.00 RSD
+                    </p>
+                    <h4>&#10148; Internacionalni paket</h4>
+                    <p>
+                        Dve asistencije na teritoriji Republike Srbije i jedna asistencija na teritoriji Evrope u trajanju od godinu dana.
+                        4999.00 RSD
+                    </p>
+                    <h4>&#10148; Euro+ paket</h4>
+                    <p>
+                        Dve asistencije na teritoriji Republike Srbije i tri asistencije na teritoriji Evrope u trajanju od dve godine.
+                        9999.00 RSD
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- kontakt -->
+
+    <a name="kontakt"></a>
+    <div id="kontakt" class="sekcija">
+        <div class="pano">
+            <h2>Kontakt</h2>
+            <p>Adresa: Ogranak za rad sa fizičkim i pravnim licima: Novosadski put BB, Veternik;</p>
+            <p>Sedište: Černiševskog BB, Novi Sad</p>
+            <p>Pomoć na putu 24h: +381 69 667 667</p>
+            <p>Informacije: +381 63 640 140</p>
+            <p>E-mail: office@kondor-servis.com</p>
+            <h4 align="center">Ukoliko postoji neka nejasnoća ili želite da date primedbu našoj firmi, molim vas da nas obavestite u polju ispod.</h4>
+            <input type="text" placeholder="Unesite tekst ovde">
+            <br>
+            <button type="button">Obavestite nas</button>
+
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <span>Tehnički fakultet - Mihajlo Pupin</span>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

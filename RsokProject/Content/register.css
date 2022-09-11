@@ -1,0 +1,91 @@
+body {
+    font-family: Roboto;
+    margin: 0;
+    background: #191919;
+    color: #8D8273;
+}
+
+nav {
+    font-family: "Lato";
+    height: 60px;
+    width: 100%;
+    background-color: #343233;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    display: inline-block;
+    width: 100px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    padding: 20px 0;
+    color: #8D8273;
+    transition: 1s;
+}
+
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+h1 {
+    color: #FFD152;
+    font-family: "Lato";
+    font-size: 54px;
+    font-weight: 300;
+}
+
+.login-sec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    height: 240px;
+    padding: 40px 40px;
+    margin-top: 10px;
+    border: 2px solid #CC6666;
+    border-radius: 6px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 70%;
+    padding: 5px 0;
+}
+
+.form-control {
+    background-color: #191919;
+    border: 1px solid #CC6666;
+    border-radius: 6px;
+    color: #8D8273;
+    height: 40px;
+    width: 100%;
+    font-size: 18px;
+}
+
+.btn-btn-primary {
+    background-color: #CC6666;
+    border: none;
+    margin-top: 20px;
+    height: 50px;
+    width: 70%;
+    font-family: Roboto;
+    color: #282627;
+    letter-spacing: 2px;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+textarea:focus, input:focus {
+    outline: none;
+}
